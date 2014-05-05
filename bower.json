@@ -1,0 +1,10 @@
+{
+  "name": "jquery-lazyload",
+  "authors": [
+    {"name": "Matt Rose", "email": "matt@mattrose.ca"}
+  ],
+  "dependencies": {
+    "jquery-boiler": "0.1.x",
+    "jquery-fold": "ssh://git@stash.carpages.ca/gem/jquery-fold.git#0.1.x"
+  }
+}
