@@ -5,6 +5,6 @@
   ],
   "dependencies": {
     "jquery-boiler": "0.1.x",
-    "jquery-fold": "ssh://git@stash.carpages.ca/gem/jquery-fold.git#0.1.x"
+    "jquery-fold": "ssh://git@stash.carpages.ca/gem/jquery-fold.git#1"
   }
 }
