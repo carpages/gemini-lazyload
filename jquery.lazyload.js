@@ -1,9 +1,24 @@
-// Works the same as http://www.appelsiini.net/projects/lazyload v1.8.4
-// Except you attach it to the containers, and send the images selector as an option
+/**
+ * @fileoverview
 
-// $(container).lazyload({images:'img.lazy'});
+Works the same as http://www.appelsiini.net/projects/lazyload v1.8.4
+The only different is you bind it to the containers, and send the images
+selector as an option.
 
-define(['jquery.boiler', 'jquery.fold'], function($){
+ *
+ * @namespace jquery.lazyload
+ * @copyright Carpages.ca 2014
+ * @author Matt Rose <matt@mattrose.ca>
+ *
+ * @requires jquery-loader
+ * @requires jquery.boiler
+ * @requires jquery.fold
+ *
+ * @example
+  $('#js-container').lazyload({images:'img.lazy'});
+ */
+
+define(['jquery-loader', 'jquery.boiler', 'jquery.fold'], function($){
 
 	$.boiler('lazyload', {
 
