@@ -6,19 +6,18 @@ The only different is you bind it to the containers, and send the images
 selector as an option.
 
  *
- * @namespace jquery.lazyload
+ * @namespace gemini.lazyload
  * @copyright Carpages.ca 2014
  * @author Matt Rose <matt@mattrose.ca>
  *
- * @requires jquery-loader
- * @requires jquery.boiler
- * @requires jquery.fold
+ * @requires gemini
+ * @requires gemini.fold
  *
  * @example
-  $('#js-container').lazyload({images:'img.lazy'});
+  G('#js-container').lazyload({images:'img.lazy'});
  */
 
-define(['jquery-loader', 'jquery.boiler', 'jquery.fold'], function($){
+define(['gemini', 'gemini.fold'], function($){
 
 	$.boiler('lazyload', {
 

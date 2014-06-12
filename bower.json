@@ -1,11 +1,10 @@
 {
-  "name": "jquery-lazyload",
+  "name": "gemini-lazyload",
   "authors": [
     {"name": "Matt Rose", "email": "matt@mattrose.ca"}
   ],
   "dependencies": {
-    "jquery-loader": "ssh://git@stash.carpages.ca/gem/jquery-loader.git",
-    "jquery-boiler": "0.1.x",
-    "jquery-fold": "ssh://git@stash.carpages.ca/gem/jquery-fold.git"
+    "gemini-loader": "ssh://git@stash.carpages.ca/gem/gemini-loader.git",
+    "gemini-fold": "ssh://git@stash.carpages.ca/gem/gemini-fold.git"
   }
 }
