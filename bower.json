@@ -3,6 +3,10 @@
   "authors": [
     {"name": "Matt Rose", "email": "matt@mattrose.ca"}
   ],
+  "main": [
+    "gemini.lazyload.js"
+  ],
+  "ignore": [],
   "dependencies": {
     "gemini-loader": "ssh://git@stash.carpages.ca/gem/gemini-loader.git",
     "gemini-fold": "ssh://git@stash.carpages.ca/gem/gemini-fold.git"
