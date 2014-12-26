@@ -8,7 +8,7 @@
   ],
   "ignore": [],
   "dependencies": {
-    "gemini-loader": "ssh://git@stash.carpages.ca/gem/gemini-loader.git#~0",
-    "gemini-fold": "ssh://git@stash.carpages.ca/gem/gemini-fold.git#~0"
+    "gemini-loader": "~0",
+    "gemini-fold": "~0"
   }
 }
