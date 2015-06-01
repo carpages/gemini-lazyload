@@ -12,12 +12,13 @@ selector as an option.
  *
  * @requires gemini
  * @requires gemini.fold
+ * @requires gemini.respond
  *
  * @example
   G('#js-container').lazyload({images:'img.lazy'});
  */
 
-define(['gemini', 'gemini.fold'], function($){
+define(['gemini', 'gemini.fold', 'gemini.respond'], function($){
 
   $.boiler('lazyload', {
 

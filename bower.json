@@ -9,6 +9,7 @@
   "ignore": [],
   "dependencies": {
     "gemini-loader": "~0",
-    "gemini-fold": "~0"
+    "gemini-fold": "~0",
+    "gemini-respond": "~0"
   }
 }
