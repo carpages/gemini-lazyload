@@ -15,7 +15,10 @@ selector as an option.
  * @requires gemini.respond
  *
  * @example
-  G('#js-container').lazyload({images:'img.lazy'});
+  G('#js-container').lazyload({
+    images: 'img.lazy',
+    bindWindow: true
+  });
  */
 
 define(['gemini', 'gemini.fold', 'gemini.respond'], function($){
