@@ -6,10 +6,15 @@
   "main": [
     "gemini.lazyload.js"
   ],
-  "ignore": [],
+  "ignore": [
+    "test"
+  ],
   "dependencies": {
     "gemini-loader": "~0",
     "gemini-fold": "~0",
     "gemini-respond": "~0"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.11"
   }
 }
