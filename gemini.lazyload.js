@@ -20,8 +20,26 @@ selector as an option.
     bindWindow: true
   });
  */
-
-define(['gemini', 'gemini.fold', 'gemini.respond'], function($){
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([
+      'gemini',
+      'gemini.fold',
+      'gemini.respond'
+    ], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    module.exports = factory(
+      require('gemini'),
+      require('gemini-fold'),
+      require('gemini-respond')
+    );
+  } else {
+    // Browser globals
+    factory(G);
+  }
+}(function($) {
 
   $.boiler('lazyload', {
 
@@ -194,4 +212,4 @@ define(['gemini', 'gemini.fold', 'gemini.respond'], function($){
 
   return $;
 
-});
+}));
