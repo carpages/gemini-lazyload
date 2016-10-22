@@ -31,7 +31,7 @@ selector as an option.
   } else if ( typeof exports === 'object' ) {
     // Node/CommonJS
     module.exports = factory(
-      require( 'gemini' ),
+      require( 'gemini-loader' ),
       require( 'gemini-fold' ),
       require( 'gemini-respond' )
     );
