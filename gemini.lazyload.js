@@ -20,136 +20,143 @@ selector as an option.
     bindWindow: true
   });
  */
-(function(factory) {
-  if (typeof define === 'function' && define.amd) {
+( function( factory ) {
+  if ( typeof define === 'function' && define.amd ) {
     // AMD. Register as an anonymous module.
     define([
       'gemini',
       'gemini.fold',
       'gemini.respond'
-    ], factory);
-  } else if (typeof exports === 'object') {
+    ], factory );
+  } else if ( typeof exports === 'object' ) {
     // Node/CommonJS
     module.exports = factory(
-      require('gemini'),
-      require('gemini-fold'),
-      require('gemini-respond')
+      require( 'gemini' ),
+      require( 'gemini-fold' ),
+      require( 'gemini-respond' )
     );
   } else {
     // Browser globals
-    factory(G);
+    factory( G );
   }
-}(function($) {
-
-  $.boiler('lazyload', {
+}( function( $ ) {
+  $.boiler( 'lazyload', {
 
     // plugin's default options
     defaults: {
-      threshold       : 0,
-      failure_limit   : 0,
-      event           : "scroll",
-      effect          : "show",
-      images          : 'img.lazy',
-      data_attribute  : "original",
-      skip_invisible  : true,
-      appear          : null,
-      load            : null,
-      placeholder     : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-      bindWindow      : false
+      threshold:      0,
+      failure_limit:  0,
+      event:          'scroll',
+      effect:         'show',
+      images:         'img.lazy',
+      data_attribute: 'original',
+      skip_invisible: true,
+      appear:         null,
+      load:           null,
+      placeholder:    'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
+      bindWindow:     false
     },
 
     // the method that initiates DOM listeners and manipulation
-    init: function(){
+    init: function() {
       var plugin = this;
 
-      //Cache
-      plugin.$window = $(window);
-      plugin.$imgs = plugin.$el.find(plugin.settings.images);
+      // Cache
+      plugin.$window = $( window );
+      plugin.$imgs = plugin.$el.find( plugin.settings.images );
       plugin.elToBind = plugin.settings.bindWindow ? window : plugin.el;
-      plugin.$elToBind = $(plugin.elToBind);
+      plugin.$elToBind = $( plugin.elToBind );
 
       // Bind the (scroll?) event to the container
       // Fire one scroll event per scroll. Not one scroll event per image.
-      if (0 === plugin.settings.event.indexOf("scroll")) {
+      if ( plugin.settings.event.indexOf( 'scroll' ) === 0 ) {
         // only trigger on intervals of 250ms
         // http://ejohn.org/blog/learning-from-twitter/
         var scrollTriggered = false;
 
-        plugin.$elToBind.bind(plugin.settings.event, function(event) {
+        plugin.$elToBind.bind( plugin.settings.event, function( event ) {
           scrollTriggered = true;
         });
 
-        setInterval(function(){
-          if(scrollTriggered){
+        setInterval( function() {
+          if ( scrollTriggered ) {
             plugin.update();
             scrollTriggered = false;
           }
-        }, 250);
+        }, 250 );
       }
 
-      plugin.$imgs.each(function(){
+      plugin.$imgs.each( function() {
         var img = this;
-        var $img = $(this);
+        var $img = $( this );
 
         img.loaded = false;
 
         /* If no src attribute given use data:uri. */
-        if ($img.attr("src") === undefined || $img.attr("src") === false || $img.attr("src") === '') {
-          $img.attr("src", plugin.settings.placeholder);
+        if (
+          $img.attr( 'src' ) === undefined ||
+          $img.attr( 'src' ) === false ||
+          $img.attr( 'src' ) === ''
+        ) {
+          $img.attr( 'src', plugin.settings.placeholder );
         }
 
         /* When appear is triggered load original image. */
-        $img.one("appear", function() {
-          if (!this.loaded) {
-            var imgUrl = plugin.getImgUrl(img);
+        $img.one( 'appear', function() {
+          if ( !this.loaded ) {
+            var imgUrl = plugin.getImgUrl( img );
 
-            if (plugin.settings.appear) {
-              var elements_left = plugin.$imgs.length;
-              plugin.settings.appear.call(img, elements_left, plugin.settings);
+            if ( plugin.settings.appear ) {
+              var elementsLeft = plugin.$imgs.length;
+              plugin.settings.appear.call( img, elementsLeft, plugin.settings );
             }
-            $("<img />")
-              .bind("load", function() {
+
+            $( '<img />' )
+              .bind( 'load', function() {
                 $img
                   .hide()
-                  .attr("src", imgUrl)
-                  [plugin.settings.effect](plugin.settings.effect_speed);
+                  .attr( 'src', imgUrl )[plugin.settings.effect](
+                    plugin.settings.effect_speed
+                  );
+
                 img.loaded = true;
 
                 /* Remove image from array so it is not looped next time. */
-                var temp = $.grep(plugin.$imgs, function(img) {
+                var temp = $.grep( plugin.$imgs, function( img ) {
                   return !img.loaded;
                 });
-                plugin.$imgs = $(temp);
 
-                if (plugin.settings.load) {
-                  var elements_left = plugin.$imgs.length;
-                  plugin.settings.load.call(img, elements_left, plugin.settings);
+                plugin.$imgs = $( temp );
+
+                if ( plugin.settings.load ) {
+                  var elementsLeft = plugin.$imgs.length;
+                  plugin.settings.load.call( img, elementsLeft, plugin.settings );
                 }
               })
-              .attr("src", imgUrl);
+              .attr( 'src', imgUrl );
           }
         });
 
         // If not scroll event, bind the img with the event
-        if (0 !== plugin.settings.event.indexOf("scroll")) {
-          $img.bind(plugin.settings.event, function(event) {
-            $img.trigger("appear");
+        if ( plugin.settings.event.indexOf( 'scroll' ) !== 0 ) {
+          $img.bind( plugin.settings.event, function( event ) {
+            $img.trigger( 'appear' );
           });
         }
       });
 
       /* Check if something appears when window is resized. */
-      $(window).bind("resize", function(event) {
+      $( window ).bind( 'resize', function( event ) {
         plugin.update();
       });
 
       /* With IOS5 force loading images when navigating with back button. */
       /* Non optimal workaround. */
-      if ((/iphone|ipod|ipad.*os 5/gi).test(navigator.appVersion)) {
-        plugin.$window.bind("pageshow", function(event) {
-          if (event.originalEvent.persisted) {
-            plugin.$imgs.each(function() {
-              $(this).trigger("appear");
+      if (( /iphone|ipod|ipad.*os 5/gi ).test( navigator.appVersion )) {
+        plugin.$window.bind( 'pageshow', function( event ) {
+          if ( event.originalEvent.persisted ) {
+            plugin.$imgs.each( function() {
+              $( this ).trigger( 'appear' );
             });
           }
         });
@@ -159,49 +166,48 @@ selector as an option.
       plugin.update();
 
       /* Load all images on print */
-      $(document).on('print', function(){
-        plugin.$imgs.each(function(){
-          $(this).trigger('appear');
+      $( document ).on( 'print', function() {
+        plugin.$imgs.each( function() {
+          $( this ).trigger( 'appear' );
         });
       });
-
     },
 
-    getImgUrl: function(img) {
-      var plugin = this,
-          $img = $(img),
-          width = $window.width(),
-          url = $img.data(plugin.settings.data_attribute);
+    getImgUrl: function( img ) {
+      var plugin = this;
+      var $img = $( img );
+      var width = plugin.$window.width();
+      var url = $img.data( plugin.settings.data_attribute );
 
-      _.each($.respond.sortedBreakpoints(), function(bp){
-        if(width > bp.size) {
-          var isUrl = $img.data(bp.screen);
-          url = !!isUrl ? isUrl : url;
+      G._.each( $.respond.sortedBreakpoints(), function( bp ) {
+        if ( width > bp.size ) {
+          var isUrl = $img.data( bp.screen );
+          url = isUrl || url;
         }
       });
 
       return url;
     },
 
-    update: function(){
+    update: function() {
       var plugin = this;
       var counter = 0;
 
-      plugin.$imgs.each(function() {
-        var $this = $(this);
-        if (plugin.settings.skip_invisible && !$this.is(":visible")) {
+      plugin.$imgs.each( function() {
+        var $this = $( this );
+        if ( plugin.settings.skip_invisible && !$this.is( ':visible' )) {
           return;
         }
-        if ($.abovethetop(this, {container: plugin.elToBind, threshold: plugin.settings.threshold}) ||
-          $.leftofbegin(this, {container: plugin.elToBind, threshold: plugin.settings.threshold})) {
+        if ( $.abovethetop( this, { container: plugin.elToBind, threshold: plugin.settings.threshold }) ||
+          $.leftofbegin( this, { container: plugin.elToBind, threshold: plugin.settings.threshold })) {
             /* Nothing. */
-        } else if (!$.belowthefold(this, {container: plugin.elToBind, threshold: plugin.settings.threshold}) &&
-          !$.rightoffold(this, {container: plugin.elToBind, threshold: plugin.settings.threshold})) {
-            $this.trigger("appear");
+        } else if ( !$.belowthefold( this, { container: plugin.elToBind, threshold: plugin.settings.threshold }) &&
+          !$.rightoffold( this, { container: plugin.elToBind, threshold: plugin.settings.threshold })) {
+          $this.trigger( 'appear' );
             /* if we found an image we'll load, reset the counter */
-            counter = 0;
+          counter = 0;
         } else {
-          if (++counter > plugin.settings.failure_limit) {
+          if ( ++counter > plugin.settings.failure_limit ) {
             return false;
           }
         }
@@ -211,5 +217,4 @@ selector as an option.
   });
 
   return $;
-
 }));
