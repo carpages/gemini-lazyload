@@ -44,17 +44,17 @@ selector as an option.
 
     // plugin's default options
     defaults: {
-      threshold:      0,
-      failure_limit:  0,
-      event:          'scroll',
-      effect:         'show',
-      images:         'img.lazy',
+      threshold: 0,
+      failure_limit: 0,
+      event: 'scroll',
+      effect: 'show',
+      images: 'img.lazy',
       data_attribute: 'original',
       skip_invisible: true,
-      appear:         null,
-      load:           null,
-      placeholder:    'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
-      bindWindow:     false
+      appear: null,
+      load: null,
+      placeholder: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
+      bindWindow: false
     },
 
     // the method that initiates DOM listeners and manipulation
