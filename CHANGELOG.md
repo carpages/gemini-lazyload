@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.2
+
+  - Use Carpages eslint config
+
 ## v0.2.1
 
   - Remove jshint in favour of eslint with custom ruleset
