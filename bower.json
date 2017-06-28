@@ -1,14 +1,17 @@
 {
   "name": "gemini-lazyload",
   "authors": [
-    {"name": "Matt Rose", "email": "matt@mattrose.ca"}
+    {
+      "name": "Matt Rose",
+      "email": "matt@mattrose.ca"
+    }
   ],
   "main": [
     "gemini.lazyload.js"
   ],
   "ignore": [],
   "dependencies": {
-    "gemini-loader": "~0",
-    "gemini-fold": "~0"
+    "gemini-loader": "0.3.x",
+    "gemini-fold": "0.1.x"
   }
 }
