@@ -34,8 +34,8 @@ define(['gemini', 'gemini.fold'], function($){
       load            : null,
       placeholder     : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
       bindWindow      : false,
-      fallbackImage  : null,
-      fallbackTimer  : 3000
+      fallbackImage   : null,
+      fallbackTimer   : 3000
     },
 
     // the method that initiates DOM listeners and manipulation
