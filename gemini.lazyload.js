@@ -109,8 +109,8 @@ define(['gemini', 'gemini.fold'], function($){
               .attr("src", imgUrl);
 
             /* If image doesn't load, display fallbackImage */
-            if (plugin.settings.fallbackImage !== null){
-              setTimeout(function(){
+            if (plugin.settings.fallbackImage !== null) {
+              setTimeout(function() {
                 $img.attr( 'src', plugin.settings.fallbackImage );
               }, plugin.settings.fallbackTimer );
             }
