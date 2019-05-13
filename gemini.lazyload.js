@@ -33,7 +33,9 @@ define(['gemini', 'gemini.fold'], function($){
       appear          : null,
       load            : null,
       placeholder     : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-      bindWindow      : false
+      bindWindow      : false,
+      fallback_image  : null,
+      fallback_timer  : 3000
     },
 
     // the method that initiates DOM listeners and manipulation
@@ -105,6 +107,13 @@ define(['gemini', 'gemini.fold'], function($){
                 }
               })
               .attr("src", imgUrl);
+
+            /* If image doesn't load, display fallback_image */
+            if (plugin.settings.fallback_image !== null){
+              setTimeout(function(){
+                $img.attr( 'src', plugin.settings.fallback_image );
+              }, plugin.settings.fallback_timer );
+            }
           }
         });
 
