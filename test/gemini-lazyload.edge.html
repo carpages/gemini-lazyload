@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Gemini Lazyload Edge Test</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gemini Lazyload Edge Test</title>
 
-  <style>
-    body {
-      padding: 1em;
-    }
-    img {
-      display: block;
-      margin-bottom: 2em;
-    }
-  </style>
+    <style>
+      body {
+        padding: 1em;
+      }
+      img {
+        display: block;
+        margin-bottom: 2em;
+      }
+    </style>
 
-  <script>window.G={D:{_qj:[]}};G.Q=function(k){G.D._qj.push(k)};//0.1.0</script>
-</head>
-<body>
+    <script>
+      window.G = { D: { _qj: [] } };
+      G.Q = function(k) {
+        G.D._qj.push(k);
+      }; //0.1.0
+    </script>
+  </head>
+  <body>
+    <div id="js-container">
+      <img class="lazy" width="100" height="100" data-original="https://unsplash.it/100/100" />
+      <img class="lazy" width="200" height="100" data-original="https://unsplash.it/200/100" />
+      <img class="lazy" width="100" height="200" data-original="https://unsplash.it/100/200" />
+      <img class="lazy" width="150" height="100" data-original="https://unsplash.it/150/100" />
+      <img class="lazy" width="100" height="150" data-original="https://unsplash.it/100/150" />
+      <img class="lazy" width="100" height="300" data-original="https://unsplash.it/100/300" />
+      <img class="lazy" width="100" height="100" data-original="https://unsplash.it/100/100" />
+      <img class="lazy" width="200" height="100" data-original="https://unsplash.it/200/100" />
+      <img class="lazy" width="100" height="200" data-original="https://unsplash.it/100/200" />
+      <img class="lazy" width="150" height="100" data-original="https://unsplash.it/150/100" />
+      <img class="lazy" width="100" height="150" data-original="https://unsplash.it/100/150" />
+      <img class="lazy" width="100" height="300" data-original="https://unsplash.it/100/300" />
+    </div>
 
-  <div id="js-container">
-    <img class="lazy" width="100" height="100" data-original="http://placetim.com/100/100" />
-    <img class="lazy" width="200" height="100" data-original="http://placetim.com/200/100" />
-    <img class="lazy" width="100" height="200" data-original="http://placetim.com/100/200" />
-    <img class="lazy" width="150" height="100" data-original="http://placetim.com/150/100" />
-    <img class="lazy" width="100" height="150" data-original="http://placetim.com/100/150" />
-    <img class="lazy" width="100" height="300" data-original="http://placetim.com/100/300" />
-    <img class="lazy" width="100" height="100" data-original="http://placetim.com/100/100" />
-    <img class="lazy" width="200" height="100" data-original="http://placetim.com/200/100" />
-    <img class="lazy" width="100" height="200" data-original="http://placetim.com/100/200" />
-    <img class="lazy" width="150" height="100" data-original="http://placetim.com/150/100" />
-    <img class="lazy" width="100" height="150" data-original="http://placetim.com/100/150" />
-    <img class="lazy" width="100" height="300" data-original="http://placetim.com/100/300" />
-  </div>
-
-  <!-- Load JS. -->
-  <script data-main="gemini-lazyload.edge" src="../bower_components/requirejs/require.js"></script>
-</body>
+    <!-- Load JS. -->
+    <script
+      data-main="gemini-lazyload.edge"
+      src="../bower_components/requirejs/require.js"
+    ></script>
+  </body>
 </html>

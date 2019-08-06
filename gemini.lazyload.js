@@ -1,3 +1,5 @@
+/* eslint-disable no-unexpected-multiline */
+
 /**
  * @fileoverview
 
@@ -23,11 +25,7 @@ selector as an option.
 ( function( factory ) {
   if ( typeof define === 'function' && define.amd ) {
     // AMD. Register as an anonymous module.
-    define([
-      'gemini',
-      'gemini.fold',
-      'gemini.respond'
-    ], factory );
+    define([ 'gemini', 'gemini.fold', 'gemini.respond' ], factory );
   } else if ( typeof exports === 'object' ) {
     // Node/CommonJS
     module.exports = factory(
@@ -39,9 +37,8 @@ selector as an option.
     // Browser globals
     factory( G );
   }
-}( function( $ ) {
+})( function( $ ) {
   $.boiler( 'lazyload', {
-
     // plugin's default options
     defaults: {
       threshold: 0,
@@ -53,7 +50,8 @@ selector as an option.
       skip_invisible: true,
       appear: null,
       load: null,
-      placeholder: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
+      placeholder:
+        'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
       bindWindow: false
     },
 
@@ -115,9 +113,8 @@ selector as an option.
               .bind( 'load', function() {
                 $img
                   .hide()
-                  .attr( 'src', imgUrl )[plugin.settings.effect](
-                    plugin.settings.effect_speed
-                  );
+                  .attr( 'src', imgUrl )
+                  [plugin.settings.effect]( plugin.settings.effect_speed );
 
                 img.loaded = true;
 
@@ -152,7 +149,7 @@ selector as an option.
 
       /* With IOS5 force loading images when navigating with back button. */
       /* Non optimal workaround. */
-      if (( /iphone|ipod|ipad.*os 5/gi ).test( navigator.appVersion )) {
+      if ( /iphone|ipod|ipad.*os 5/gi.test( navigator.appVersion )) {
         plugin.$window.bind( 'pageshow', function( event ) {
           if ( event.originalEvent.persisted ) {
             plugin.$imgs.each( function() {
@@ -198,13 +195,23 @@ selector as an option.
         if ( plugin.settings.skip_invisible && !$this.is( ':visible' )) {
           return;
         }
-        if ( $.abovethetop( this, { container: plugin.elToBind, threshold: plugin.settings.threshold }) ||
-          $.leftofbegin( this, { container: plugin.elToBind, threshold: plugin.settings.threshold })) {
-            /* Nothing. */
-        } else if ( !$.belowthefold( this, { container: plugin.elToBind, threshold: plugin.settings.threshold }) &&
-          !$.rightoffold( this, { container: plugin.elToBind, threshold: plugin.settings.threshold })) {
+        if (
+          $.abovethetop( this, {
+            container: plugin.elToBind,
+            threshold: plugin.settings.threshold
+          }) ||
+          $.leftofbegin( this, { container: plugin.elToBind, threshold: plugin.settings.threshold })
+        ) {
+          /* Nothing. */
+        } else if (
+          !$.belowthefold( this, {
+            container: plugin.elToBind,
+            threshold: plugin.settings.threshold
+          }) &&
+          !$.rightoffold( this, { container: plugin.elToBind, threshold: plugin.settings.threshold })
+        ) {
           $this.trigger( 'appear' );
-            /* if we found an image we'll load, reset the counter */
+          /* if we found an image we'll load, reset the counter */
           counter = 0;
         } else {
           if ( ++counter > plugin.settings.failure_limit ) {
@@ -213,8 +220,7 @@ selector as an option.
         }
       });
     }
-
   });
 
   return $;
-}));
+});
