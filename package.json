@@ -1,6 +1,6 @@
 {
   "name": "gemini-lazyload",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Gemini lazyload",
   "author": {
     "name": "Matt Rose",
@@ -13,8 +13,8 @@
     "url": "https://github.com/carpages/gemini-lazyload"
   },
   "dependencies": {
-    "gemini-loader": "0.5.x",
     "gemini-fold": "0.3.x",
+    "gemini-loader": "0.5.x",
     "gemini-respond": "0.3.x"
   },
   "devDependencies": {
